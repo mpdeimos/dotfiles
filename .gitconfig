@@ -1,0 +1,7 @@
+[color]
+	ui = true
+[merge]
+	log = true
+[user]
+	name = Martin Pöhlmann
+	email = martin.deimos@gmx.de
