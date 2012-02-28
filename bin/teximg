@@ -1,0 +1,8 @@
+#!/bin/sh
+echo "Converting SVG to PDF"
+find $1 -type f -name "*.svg" -exec inkscape -f "{}" -D -A "{}.pdf" \;
+find $1 -type f -name "*.svg.pdf" -exec rename -f 's/\.svg\.pdf$/-svg\.pdf/' "{}" \;
+echo "Crop PDF"
+find $1 -type f -name "*.pdf" -not -name "*-crop.pdf" -not -name "*-svg.pdf" -exec pdfcrop "{}" \;
+#zenity --info --text="Alle Bilder konvertiert"
+

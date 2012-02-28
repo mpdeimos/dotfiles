@@ -7,6 +7,7 @@ alias -- -="cd -"
 alias lsd='ls -l | grep "^d"'
 
 # Shortcuts
+alias p="cd ~/Programs"
 alias d="cd ~/Dropbox"
 alias dl="cd ~/Downloads"
 alias ws="cd ~/workspaces"
