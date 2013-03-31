@@ -18,3 +18,4 @@ alias wsa="cd ~/workspaces/android"
 
 # File size
 alias fs="stat -f \"%z bytes\""
+

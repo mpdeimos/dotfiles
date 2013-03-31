@@ -97,6 +97,9 @@ stash () {
             stash apply "$name"
             stash delete "$name"
             ;;
+	clear)
+            rm .svn/stash/*.diff
+            ;;
         save)
             if [ $# -lt 2 ]
             then

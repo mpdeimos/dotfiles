@@ -3,5 +3,7 @@
 [merge]
 	log = true
 [user]
-	name = Martin Pöhlmann
+	name = Martin Pöhlmann\n
 	email = martin.deimos@gmx.de
+[core]
+	autocrlf = input
