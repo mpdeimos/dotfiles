@@ -5,6 +5,8 @@ alias -- -="cd -"
 
 # List only directories
 alias lsd='ls -l | grep "^d"'
+alias ll='ls -l'
+alias la='ls -la'
 
 # Shortcuts
 alias p="cd ~/Programs"
