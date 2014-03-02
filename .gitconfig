@@ -2,8 +2,12 @@
 	ui = true
 [merge]
 	log = true
+	tool = meld
 [user]
-	name = Martin Pöhlmann\n
+	name = Martin Pöhlmann
 	email = martin.deimos@gmx.de
 [core]
 	autocrlf = input
+	editor = nano
+[push]
+	default = simple

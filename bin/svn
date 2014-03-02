@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+# echo -e '\033k'svn'\033\\'
 
 usage () {
     cat <<USAGE
@@ -16,7 +18,22 @@ Helper commands:
     resolve-tree    - Mark all tree-conflicts "resolved"
     origin          - Gets the origin of this working copy or specified branch
     stash help      - Shows the help menu for "svn stash"
+    clean           - cleans the working directory
 USAGE
+}
+
+clean() {
+	FILES=`svn stat --no-ignore | grep ^\? | cut -b 9-`
+
+	SAVEIFS=$IFS
+	IFS=$(echo "\n\b")
+
+	for f in ${FILES}
+	do
+		rm -rfv "${f}"
+	done
+
+	IFS=$SAVEIFS
 }
 
 stash () {
@@ -270,6 +287,9 @@ case "$1" in
         mkdir -p .svn/stash
 
         stash "$2" "$3"
+    ;;
+    clean)
+	clean
     ;;
     help)
         if [ $# -lt 2 ]
