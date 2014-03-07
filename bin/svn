@@ -22,6 +22,10 @@ Helper commands:
 USAGE
 }
 
+difftool() {
+	svn diff --diff-cmd='meld' ${@:2}
+}
+
 clean() {
 	FILES=`svn stat --no-ignore | grep ^\? | cut -b 9-`
 
@@ -290,6 +294,9 @@ case "$1" in
     ;;
     clean)
 	clean
+    ;;
+    difftool)
+	difftool
     ;;
     help)
         if [ $# -lt 2 ]
