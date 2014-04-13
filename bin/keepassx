@@ -1,0 +1,3 @@
+#!/bin/bash
+setxkbmap de
+/usr/bin/keepassx $*
