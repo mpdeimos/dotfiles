@@ -1,0 +1,6 @@
+PATTERN='*.*'
+if [ "$@" ]
+then
+	PATTERN=$@
+fi
+find . -name $PATTERN -type f | xargs wc -l
