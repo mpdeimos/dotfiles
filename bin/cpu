@@ -1,0 +1,15 @@
+if [[ $1 == 'hi' ]]
+then
+    sudo cpupower frequency-set -g performance -d 1.4GHz -u 3.5GHz
+elif [[ $1 == 'hihi' ]]
+then
+    sudo cpupower frequency-set -g performance -d 3GHz -u 3.5GHz
+elif [[ $1 == 'lo' ]]
+then
+    sudo cpupower frequency-set -g powersave -d 1.4GHz -u 2.5GHz
+elif [[ $1 == 'lolo' ]]
+then
+    sudo cpupower frequency-set -g powersave -d 800MHz -u 2.5GHz
+fi
+
+sudo cpupower frequency-info
