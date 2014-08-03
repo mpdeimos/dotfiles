@@ -5,7 +5,7 @@
 	tool = meld
 [user]
 	name = Martin Pöhlmann
-	email = mpdeimos@outlook.com
+	email = mpdeimos@users.noreply.github.com
 [core]
 	autocrlf = input
 	editor = nano
