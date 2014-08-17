@@ -21,3 +21,5 @@ alias wsa="cd ~/workspaces/android"
 # File size
 alias fs="stat -f \"%z bytes\""
 
+# ping google
+alias pg="ping www.google.com"
