@@ -9,9 +9,7 @@ alias ll='ls -l'
 alias la='ls -la'
 
 # Shortcuts
-alias p="cd ~/Programs"
-alias d="cd ~/Dropbox"
-alias dl="cd ~/Downloads"
+alias d="cd ~/Downloads"
 alias ws="cd ~/workspaces"
 alias wsp="cd ~/workspaces/php"
 alias wscq="cd ~/workspaces/cq"
