@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Citrix Launcher
+Exec=/usr/lib32/ICAClient/wfica
+MimeType=application/x-ica
+Icon=ica
+Terminal=false
+Type=Application
+Categories=
+Comment=
