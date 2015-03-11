@@ -46,7 +46,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-#plugins=(git svn)
+plugins=(git svn docker)
 
 # User configuration
 
@@ -87,3 +87,6 @@ PROMPT='%50<^<%{${ret_status}%}%~%<<%b%{$reset_color%}%(!.#.$) '
 #RPROMPT='%{${ret_status}%}%D %T %b%n@%m%{$reset_color%}'
 
 export EDITOR=nano
+
+autoload -U zmv
+alias mmv='noglob zmv -W'

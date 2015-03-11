@@ -167,22 +167,22 @@ USAGE
 
 case "$1" in
     tags)
-        url=`svn info | awk '/^URL:/ { print $2 }'`
+        url=`svn info | awk '/^Repository Root:/ { print $3 }'`
         base=`echo $url | sed 's/trunk$//'`
         base=`echo $base | sed 's/tags\\/[^\\/][^\\/]*$//'`
         base=`echo $base | sed 's/branches\\/[^\\/][^\\/]*$//'`
         tags="$base/tags"
 
-        /usr/bin/svn ls $tags | cut -d / -f 1 | sort -V | tabulate
+        /usr/bin/svn ls $tags | cut -d / -f 1 | sort -V
     ;;
     branches)
-        url=`svn info | awk '/^URL:/ { print $2 }'`
+        url=`svn info | awk '/^Repository Root:/ { print $3 }'`
         base=`echo $url | sed 's/trunk$//'`
         base=`echo $base | sed 's/tags\\/[^\\/][^\\/]*$//'`
         base=`echo $base | sed 's/branches\\/[^\\/][^\\/]*$//'`
         branches="$base/branches"
 
-        /usr/bin/svn ls $branches | cut -d / -f 1 | sort | tabulate
+        /usr/bin/svn ls $branches | cut -d / -f 1 | sort
     ;;
     tag)
         if [ $# -lt 2 ]
@@ -245,17 +245,17 @@ case "$1" in
             exit 1
         fi
 
-        working=`svn info | awk '/^URL:/ { print $2 }'`
-        tags=`echo $working | sed -E 's/trunk$/tags/; s/(tags|branches)\/[^\/]*$/tags/;'`
+        working=`svn info | awk '/^Relative URL:/ { print $3 }'`
+        tag=`echo $working | sed -E "s/trunk|((tags|branches)\/[^\/]*)/tags\/$2/;"`
 
-        echo "Switching working copy to tag $2"
-        /usr/bin/svn switch $tags/$2 .
+        echo "Switching working copy to tag $2: $working -> $tag"
+        /usr/bin/svn switch $tag/$2 .
     ;;
     gettrunk|trunk)
-        working=`svn info | awk '/^URL:/ { print $2 }'`
-        trunk=`echo $working | sed -E 's/(branches|tags)\/[^\/]*$/trunk/'`
+        working=`svn info | awk '/^Relative URL:/ { print $3 }'`
+        trunk=`echo $working | sed -E 's/(branches|tags)\/[^\/]*/trunk/'`
 
-        echo "Switching working copy to trunk"
+        echo "Switching working copy to trunk: $working -> $trunk"
         /usr/bin/svn switch $trunk .
     ;;
     getbranch|gb)
@@ -265,11 +265,11 @@ case "$1" in
             exit 1
         fi
 
-        working=`svn info | awk '/^URL:/ { print $2 }'`
-        branches=`echo $working | sed -E 's/trunk$/branches/; s/(tags|branches)\/[^\/]*$/branches/;'`
+        working=`svn info | awk '/^Relative URL:/ { print $3 }'`
+        branch=`echo $working | sed -E "s/(trunk|(tags|branches)\/[^\/]*)/branches\/$2/"`
 
-        echo "Switching working copy to branch $2"
-        /usr/bin/svn switch $branches/$2 .
+        echo "Switching working copy to branch $2: $working -> $branch"
+        /usr/bin/svn switch $branch .
     ;;
     resolve-tree)
         /usr/bin/svn status | grep -E '.{6,7}C' | cut -c 9- | xargs svn resolved
@@ -293,10 +293,14 @@ case "$1" in
         stash "$2" "$3"
     ;;
     clean)
-	clean
+		clean
     ;;
     difftool)
-	difftool
+		difftool
+    ;;
+	st|stat|status)
+		shift
+    	/usr/bin/svn status "$@" --ignore-externals | egrep -v "^(\s)*X.*"
     ;;
     help)
         if [ $# -lt 2 ]
