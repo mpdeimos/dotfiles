@@ -53,3 +53,5 @@ Makefile = svn:eol-style=native;svn:keywords=Date Author Id Revision HeadURL
 *.flex = svn:mime-type=text/plain;svn:eol-style=native;svn:keywords=Date Author Id Revision HeadURL
 [auth]
 password-stores = gnome-keyring
+[helpers]
+merge-tool-cmd = /home/mpdeimos/bin/svn-merge-meld.sh
