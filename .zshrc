@@ -50,7 +50,7 @@ plugins=(git svn docker)
 
 # User configuration
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+# export PATH=$HOME/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -81,12 +81,9 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 source ~/.bash_path 
+source ~/.bash_aliases
+
 
 local ret_status="%(?:%{$fg_bold[white]%}:%{$fg_bold[red]%}%s)"
 PROMPT='%50<^<%{${ret_status}%}%~%<<%b%{$reset_color%}%(!.#.$) '
 #RPROMPT='%{${ret_status}%}%D %T %b%n@%m%{$reset_color%}'
-
-export EDITOR=nano
-
-autoload -U zmv
-alias mmv='noglob zmv -W'

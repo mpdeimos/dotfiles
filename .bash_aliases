@@ -1,23 +1,36 @@
-# Easier navigation: .., ..., ~ and -
-alias ..="cd .."
-alias ...="cd ../.."
-alias -- -="cd -"
+shell=`ps | grep $$ | awk '{ print $4 }'`
+if [[ "$shell" == "bash" ]]
+then
+	# Easier navigation: .., ..., ~ and -
+	alias ..="cd .."
+	alias ...="cd ../.."
+	alias -- -="cd -"
 
-# List only directories
-alias lsd='ls -l | grep "^d"'
-alias ll='ls -l'
-alias la='ls -la'
+	# List only directories
+	alias lsd='ls -l | grep "^d"'
+	alias ll='ls -l'
+	alias la='ls -la'
+fi
 
-# Shortcuts
-alias d="cd ~/Downloads"
-alias ws="cd ~/workspaces"
-alias wsp="cd ~/workspaces/php"
-alias wscq="cd ~/workspaces/cq"
-alias wsj="cd ~/workspaces/java"
-alias wsa="cd ~/workspaces/android"
+if [[ "$shell" == "zsh" ]]
+then
+	autoload -U zmv 
+	alias mmv='noglob zmv -W'
+fi
+
 
 # File size
 alias fs="stat -f \"%z bytes\""
 
 # ping google
 alias pg="ping www.google.com"
+
+# clipboard
+alias cb='xclip -selection c'
+alias cwd='pwd | cb'
+
+# open
+alias o='gnome-open'
+
+# sudo
+alias please='sudo $(fc -ln -1)'

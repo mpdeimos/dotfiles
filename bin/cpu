@@ -9,7 +9,10 @@ then
     sudo cpupower frequency-set -g powersave -d 1.4GHz -u 2.5GHz
 elif [[ $1 == 'lolo' ]]
 then
-    sudo cpupower frequency-set -g powersave -d 800MHz -u 2.5GHz
+    sudo cpupower frequency-set -g powersave -d 800MHz -u 1.5GHz
+elif [[ $1 == 'yolo' ]]
+then
+    sudo cpupower frequency-set -g powersave -d 800MHz -u 800MHz
 fi
 
 sudo cpupower frequency-info

@@ -1,10 +1,12 @@
 [miscellany]
 global-ignores = *.o *.lo *.la #*# .*.rej *.rej .*~ *~ .#* .DS_Store build dist target
 enable-auto-props = yes
+#merge-tool-cmd=/home/mpdeimos/.bin/meld-svn
 
 [auto-props]
 *.c = svn:eol-style=native;svn:keywords=Date Author Id Revision HeadURL
 *.cpp = svn:eol-style=native;svn:keywords=Date Author Id Revision HeadURL
+*.cs = svn:eol-style=CRLF;svn:keywords=Date Author Id Revision HeadURL File=%b
 *.h = svn:eol-style=native;svn:keywords=Date Author Id Revision HeadURL
 *.dsp = svn:eol-style=CRLF
 *.dsw = svn:eol-style=CRLF
@@ -51,7 +53,3 @@ Makefile = svn:eol-style=native;svn:keywords=Date Author Id Revision HeadURL
 *.cqb = svn:mime-type=text/plain;svn:eol-style=native;svn:keywords=Date Author Id Revision HeadURL
 *.cqr = svn:mime-type=text/plain;svn:eol-style=native;svn:keywords=Date Author Id Revision HeadURL
 *.flex = svn:mime-type=text/plain;svn:eol-style=native;svn:keywords=Date Author Id Revision HeadURL
-[auth]
-password-stores = gnome-keyring
-[helpers]
-merge-tool-cmd = /home/mpdeimos/bin/svn-merge-meld.sh

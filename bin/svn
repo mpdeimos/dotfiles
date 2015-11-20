@@ -29,15 +29,15 @@ difftool() {
 clean() {
 	FILES=`svn stat --no-ignore | grep ^\? | cut -b 9-`
 
-	SAVEIFS=$IFS
-	IFS=$(echo "\n\b")
+	#SAVEIFS=$IFS
+	#IFS=$(echo "\n\b")
 
 	for f in ${FILES}
 	do
 		rm -rfv "${f}"
 	done
 
-	IFS=$SAVEIFS
+	#IFS=$SAVEIFS
 }
 
 stash () {
@@ -301,6 +301,29 @@ case "$1" in
 	st|stat|status)
 		shift
     	/usr/bin/svn status "$@" --ignore-externals | egrep -v "^(\s)*X.*"
+    ;;
+    pc|propcopy)
+		from=$2
+        shift 2
+
+        props=`svn proplist $from | tail -n +2`
+		for prop in $props
+		do
+			value=`svn propget $prop $from`
+			svn propset $prop "$value" $@
+		done
+    ;;
+    pd|propdump)
+        from=$2
+        shift 2
+
+        props=`svn proplist $from | tail -n +2`
+        for prop in $props
+        do
+			echo
+			echo ">> $prop"
+            svn propget $prop $from
+        done
     ;;
     help)
         if [ $# -lt 2 ]
