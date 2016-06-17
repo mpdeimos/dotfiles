@@ -1,0 +1,11 @@
+[Unit]
+Description=Displays now playing information (gathered from MPRIS) in slack
+
+[Service]
+Type=simple
+EnvironmentFile=%h/.config/systemd/user/slack-nowplaying.env
+ExecStart=/usr/bin/python %h/.config/systemd/user/slack-nowplaying
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
