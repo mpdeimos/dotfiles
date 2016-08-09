@@ -3,6 +3,7 @@
 [merge]
 	log = true
 	tool = meld
+#	ff = only
 [user]
 	name = Martin Pöhlmann
 	email = mpdeimos@users.noreply.github.com
@@ -11,3 +12,10 @@
 	editor = nano
 [push]
 	default = simple
+[alias]
+	st = status -sb
+	tree = log --graph --oneline --decorate
+	trace = log --follow --oneline --name-only -- 
+	find = log --all -- 
+[credential]
+	helper = cache --timeout=36000
