@@ -84,6 +84,8 @@ source $ZSH/oh-my-zsh.sh
 source ~/.bash_path 
 source ~/.bash_aliases
 
+eval $(thefuck --alias)
+
 # from mortalscumbat theme
 function my_git_prompt() {
   tester=$(git rev-parse --git-dir 2> /dev/null) || return
@@ -95,6 +97,11 @@ function my_git_prompt() {
   # is branch ahead?
   if $(echo "$(git log origin/$(current_branch)..HEAD 2> /dev/null)" | grep '^commit' &> /dev/null); then
     PREFIX_STATUS="$PREFIX_STATUS$ZSH_THEME_GIT_PROMPT_AHEAD"
+  fi
+  
+  # branch behind?
+  if $(echo "$(git log HEAD..origin/$(current_branch) 2> /dev/null)" | grep '^commit' &> /dev/null); then
+    PREFIX_STATUS="$PREFIX_STATUS$ZSH_THEME_GIT_PROMPT_BEHIND"
   fi
 
   # is anything staged?
@@ -144,7 +151,8 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%b%{$fg_bold[gray]%}]%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=""
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg_bold[red]%}*"
 #ZSH_THEME_GIT_PROMPT_PREFIX=" $fg[white]‹ %{$fg_bold[yellow]%}"
-ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg_bold[yellow]%}▴%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg_bold[yellow]%}↑%{$fg_no_bold[white]%}%B"
+ZSH_THEME_GIT_PROMPT_BEHIND="%{$fg_bold[yellow]%}↓%{$fg_no_bold[white]%}%B"
 ZSH_THEME_GIT_PROMPT_STAGED="%{$fg_bold[green]%}◾"
 ZSH_THEME_GIT_PROMPT_UNSTAGED="%{$fg_bold[red]%}◾"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[cyan]%}◾"

@@ -34,3 +34,5 @@ alias o='gnome-open'
 
 # sudo
 alias please='sudo $(fc -ln -1)'
+
+alias serve='python -m http.server 8000'
