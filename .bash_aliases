@@ -32,6 +32,16 @@ alias cwd='pwd | cb'
 # open
 alias o='gnome-open'
 
+export function f() {
+	find . -name "$1"
+	echo -n "Open files? [Y/n]: "
+	read NO_OPEN
+	if [[ "$NO_OPEN" != "n" ]]
+	then
+		find . -name "$1" -exec xdg-open {} \;
+	fi
+}
+
 # sudo
 alias please='sudo $(fc -ln -1)'
 

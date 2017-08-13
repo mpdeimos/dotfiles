@@ -1,12 +1,15 @@
 [color]
 	ui = true
 [merge]
-	log = true
-	tool = meld
-#	ff = only
+	tool = mymeld
+	conflictstyle = diff3
+[mergetool "mymeld"]
+	cmd = meld $LOCAL $BASE $REMOTE -o $MERGED --diff $BASE $LOCAL --diff $BASE $REMOTE --auto-merge
+	keepBackup = false
 [user]
 	name = Martin Pöhlmann
-	email = mpdeimos@users.noreply.github.com
+	email = poehlmann@cqse.eu
+#	email = mpdeimos@users.noreply.github.com
 [core]
 	autocrlf = input
 	editor = nano
@@ -18,9 +21,15 @@
 	trace = log --follow --oneline --name-only -- 
 	find = log --all -- 
 	cc = "! f() { cr=$(git name-rev --name-only HEAD | grep -Eo \"^cr/([0-9]+)\" | cut -d'/' -f 2); git commit -m \"CR#$cr $1\"; }; f"
+	show-tracked-ignored = ls-files -i --exclude-standard
+	conflicts=diff --name-only --diff-filter=U
+	auth-mail=config --local user.email mpdeimos@users.noreply.github.com
 [credential]
-	helper = cache --timeout=36000
+	helper = /usr/share/git/credential/gnome-keyring/git-credential-gnome-keyring
 [filter "lfs"]
 	smudge = git-lfs smudge %f
 	required = true
 	clean = git-lfs clean %f
+[filter "xetexinputencoding"]
+	smudge = sed -e 's/\\\\XeTeXinputencoding/%\\\\XeTeXinputencoding/g'
+	clean = sed -e 's/%\\\\XeTeXinputencoding/\\\\XeTeXinputencoding/g'

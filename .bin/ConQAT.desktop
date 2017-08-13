@@ -4,5 +4,5 @@ Version=1.0
 Name=ConQAT
 Comment=ConQAT Eclipse IDE
 Type=Application
-Exec=/home/mpdeimos/.bin/conqat/eclipse
+Exec=/home/mpdeimos/.bin/eclipse-neon/eclipse
 Icon=/home/mpdeimos/.bin/conqat.svg

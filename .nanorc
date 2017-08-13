@@ -306,3 +306,5 @@ set tabsize 4
 
 ## XML-type files
 # include "/usr/share/nano/xml.nanorc"
+
+include ~/.nano/syntax/ALL.nanorc

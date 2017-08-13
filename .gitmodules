@@ -1,3 +1,6 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = git://github.com/robbyrussell/oh-my-zsh.git
+[submodule ".nano/syntax.git"]
+	path = .nano/syntax.git
+	url = https://github.com/nanorc/nanorc

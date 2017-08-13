@@ -1,10 +1,10 @@
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
-    export PATH="$HOME/bin:$PATH"
+    export PATH="$HOME/bin:"$HOME/.bin":$PATH"
 fi
 
 # add gems to path
-#PATH=$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
+PATH=$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
 
 export EDITOR=nano
 export DIFFPROG=meld
