@@ -1,0 +1,5 @@
+[user]
+	email = poehlmann@cqse.eu
+[filter "xetexinputencoding"]
+	smudge = sed -e 's/\\\\XeTeXinputencoding/%\\\\XeTeXinputencoding/g'
+	clean = sed -e 's/%\\\\XeTeXinputencoding/\\\\XeTeXinputencoding/g'

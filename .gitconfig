@@ -8,8 +8,7 @@
 	keepBackup = false
 [user]
 	name = Martin Pöhlmann
-	email = poehlmann@cqse.eu
-#	email = mpdeimos@users.noreply.github.com
+	email = mpdeimos@users.noreply.github.com
 [core]
 	autocrlf = input
 	editor = nano
@@ -30,6 +29,5 @@
 	smudge = git-lfs smudge %f
 	required = true
 	clean = git-lfs clean %f
-[filter "xetexinputencoding"]
-	smudge = sed -e 's/\\\\XeTeXinputencoding/%\\\\XeTeXinputencoding/g'
-	clean = sed -e 's/%\\\\XeTeXinputencoding/\\\\XeTeXinputencoding/g'
+[includeIf "gitdir:~/cqse/"]
+	path = ~/.cqse.gitconfig
