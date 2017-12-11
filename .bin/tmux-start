@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ -e /tmp/tmux-1000/default ]]
+then
+	tmux a
+else
+	tmux
+fi

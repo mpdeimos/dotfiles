@@ -1,0 +1,11 @@
+#!/bin/bash
+
+DIST=${DIST:-"teamscale-munichre"}
+BRANCH=${BRANCH:-`git rev-parse --abbrev-ref HEAD`}
+
+echo "Building dist $DIST for branch $BRANCH"
+
+curl -X POST --url https://git.cqse.eu/api/v4/projects/13/trigger/pipeline \
+	-F token=54612adeb0606500c9363050d199c2 \
+	-F 'variables[DIST]=teamscale-munichre' \
+	-F "ref=`git rev-parse --abbrev-ref HEAD`"
