@@ -7,7 +7,7 @@ fi
 if [ -x "$(command -v ruby)" ]
 then
 	# add gems to path
-	PATH=$(ruby -rubygems -e "puts Gem.user_dir")/bin:$PATH
+	PATH=$(ruby -e "puts Gem.user_dir")/bin:$PATH
 fi
 
 export EDITOR=nano

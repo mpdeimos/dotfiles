@@ -14,10 +14,11 @@ fi
 
 if [[ "$shell" == "zsh" ]]
 then
-	autoload -U zmv 
+	autoload -U zmv
 	alias mmv='noglob zmv -W'
 fi
 
+alias hgit='GIT_DIR=~/.dotgit git'
 
 # File size
 alias fs="stat -f \"%z bytes\""
@@ -30,7 +31,7 @@ alias cb='xclip -selection c'
 alias cwd='pwd | cb'
 
 # open
-alias o='gnome-open'
+alias o='gio open'
 
 export function f() {
 	find . -name "$1"
