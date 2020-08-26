@@ -1,6 +1,13 @@
 shell=`ps | grep $$ | awk '{ print $4 }'`
+
+
+# BASH
+
 if [[ "$shell" == "bash" ]]
 then
+	# Colorize ls
+	alias ls='ls --color=auto'
+	
 	# Easier navigation: .., ..., ~ and -
 	alias ..="cd .."
 	alias ...="cd ../.."
@@ -12,28 +19,39 @@ then
 	alias la='ls -la'
 fi
 
+
+# ZSH
+
 if [[ "$shell" == "zsh" ]]
 then
 	autoload -U zmv
 	alias mmv='noglob zmv -W'
 fi
 
-alias hgit='GIT_DIR=~/.dotgit git'
+
+# access to dotfiles git
+alias dotfiles='GIT_DIR=~/.dotgit git'
+
 
 # File size
 alias fs="stat -f \"%z bytes\""
 
+
 # ping google
 alias pg="ping www.google.com"
 
+
 # clipboard
 alias cb='xclip -selection c'
-alias cwd='pwd | cb'
+alias cwd='echo -n `pwd` | cb'
+alias t='xdotool sleep 1 type --clearmodifiers'
+alias tcb='xdotool sleep 1 type --clearmodifiers "`xclip -o -selection clipboard`"'
 
-# open
+
+# open & find
 alias o='gio open'
 
-export function f() {
+function f() {
 	find . -name "$1"
 	echo -n "Open files? [Y/n]: "
 	read NO_OPEN
@@ -43,7 +61,21 @@ export function f() {
 	fi
 }
 
-# sudo
+if [[ "$shell" == "bash" ]]
+then
+	export -f f
+fi
+
+
+# error handling for the last command
+if [ -x "$(command -v thefuck)" ]
+then
+	eval $(thefuck --alias)
+fi
+
 alias please='sudo $(fc -ln -1)'
+
+
+# serving the current directory
 
 alias serve='python -m http.server 8000'

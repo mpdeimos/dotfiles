@@ -81,10 +81,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source ~/.bash_path 
 source ~/.bash_aliases
-
-eval $(thefuck --alias)
 
 # from mortalscumbat theme
 function my_git_prompt() {

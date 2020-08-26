@@ -1,23 +1,37 @@
-# ~/.profile: executed by the command interpreter for login shells.
-# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
-# exists.
-# see /usr/share/doc/bash/examples/startup-files for examples.
-# the files are located in the bash-doc package.
+# Variables
 
-# the default umask is set in /etc/profile; for setting the umask
-# for ssh logins, install and configure the libpam-umask package.
-#umask 022
+export EDITOR=nano
+export DIFFPROG=meld
+export SVN_MERGE="$HOME/.bin/svn-merge"
 
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-    # include .bashrc if it exists
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
+
+# User Paths
+
+export PATH="$HOME/.bin:$PATH"
+
+
+# Ruby
+
+if [ -x "$(command -v ruby)" ]
+then
+	export GEM_HOME=~/.gem
+	export PATH="$PATH:$(ruby -e 'puts Gem.user_dir')/bin"
 fi
 
-export QT_QPA_PLATFORMTHEME="qt5ct"
-export QT_AUTO_SCREEN_SCALE_FACTOR=0
+
+# NodeJS
+
+export PATH="$PATH:$HOME/.node_modules/bin"
+export npm_config_prefix=~/.node_modules
+
+
+# .net
+
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
-
+export DOTNET_ROOT=/usr/share/dotnet
+if [ -d "$DOTNET_ROOT" ]
+then
+	export MSBuildSDKsPath=$( echo $DOTNET_ROOT/sdk/3.*/Sdks );
+fi
+export PATH="$PATH:$HOME/.dotnet/tools"
